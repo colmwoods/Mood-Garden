@@ -14,7 +14,7 @@ const routes = {
 
 function router() {
     const path = location.hash.replace('#', '') || '/'
-    const page = routes[path] || renderHome
+    const page = routes[path] || renderLoggingPage
 
     const app = document.getElementById('app')
     app.innerHTML = ''
