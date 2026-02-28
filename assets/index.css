@@ -8,10 +8,40 @@ body {
     background-color: #0d900d; 
 }
 
-/* Header */
+/* ===== Header Layout ===== */
+
+.site-header {
+    max-width: 1100px;
+    margin: 24px auto 0;
+    padding: 10px 20px 30px;
+  
+    display: flex;
+    flex-direction: column;
+  }
+
+/* Push buttons to the right */
+.header-actions {
+    align-self: flex-end; 
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px; 
+  }
+
+/* Center brand section */
+.brand {
+    text-align: center;
+  }
+  
+  .brand-title {
+    font-size: 4rem;
+    font-weight: 600;
+    letter-spacing: 6px;
+  }
+
+/* Title styling */ 
 .brand-title {
     font-family: 'Quicksand', sans-serif;
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 600;
     letter-spacing: 4px;
     text-align: center;
@@ -30,3 +60,22 @@ body {
   .brand-title span:nth-child(10) { color: #88D498; }
   .brand-title span:nth-child(11) { color: #56C596; }
 
+/* Header buttons */
+.header-btn {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 600;
+  
+    padding: 10px 16px;
+    border-radius: 999px;
+  
+    background-color: #F6D55C; 
+    color: #1f2d1f;            
+    border: none;
+  
+    transition: background-color 0.2s ease;
+  }
+  
+  .header-btn:hover {
+    background-color: #FFD84D; 
+  }
