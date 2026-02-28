@@ -34,14 +34,14 @@ const createInitialState = () => {
 const migrate = (oldState) => {
     if (!oldState || !oldState.meta) return createInitialState();
 
-    let state = { ...oldState };
+    let state = {...oldState};
     const version = state.meta.version || 0;
 
     // Migration example (uncomment and modify when needed):
-    // if (version < 2) {
-    //    state.userSettings.newField = 'default';
-    //    state.meta.version = 2;
-    // }
+    if (version < 2) {
+        state.userSettings.newField = 'default';
+        state.meta.version = 2;
+    }
 
     state.meta.version = CURRENT_VERSION;
     state.meta.updatedAt = new Date().toISOString();
@@ -90,6 +90,7 @@ export const MoodStorage = {
     /**
      * Get the entire state object (read-only)
      */
+
     getState() {
         return JSON.parse(JSON.stringify(this._state));
     },
@@ -97,11 +98,11 @@ export const MoodStorage = {
     // --- User settings ---
 
     getSettings() {
-        return { ...this._state.userSettings };
+        return {...this._state.userSettings};
     },
 
     updateSettings(patch) {
-        this._state.userSettings = { ...this._state.userSettings, ...patch };
+        this._state.userSettings = {...this._state.userSettings, ...patch};
         this._persist();
         return this.getSettings();
     },
@@ -112,7 +113,7 @@ export const MoodStorage = {
      * Save the entry for today (or any date)
      * @param {Object} entry - { mood: string, note: string, date?: string }
      */
-    saveEntry({ mood, note, date = null }) {
+    saveEntry({mood, note, date = null}) {
         const targetDate = date || new Date().toISOString().split('T')[0];
         const timestamp = new Date().toISOString();
 
@@ -127,7 +128,7 @@ export const MoodStorage = {
         const index = this._state.history.findIndex(item => item.date === targetDate);
 
         if (index !== -1) {
-            this._state.history[index] = { ...this._state.history[index], ...newEntry };
+            this._state.history[index] = {...this._state.history[index], ...newEntry};
         } else {
             this._state.history.push(newEntry);
             // Sort history by date (newest to oldest)
@@ -149,7 +150,7 @@ export const MoodStorage = {
      * Get the full history
      */
     getHistory() {
-        return [...this._state.history];
+        return [ ...this._state.history ];
     },
 
     /**
