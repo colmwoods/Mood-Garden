@@ -79,3 +79,11 @@ function setupHoover(garden) {
     info.textContent = '';
   });
 }
+
+
+// Navigate back to the home page
+function setupBackButton() {
+  document.getElementById('backBtn').addEventListener('click', () => {
+    location.hash = '/';
+  });
+}
