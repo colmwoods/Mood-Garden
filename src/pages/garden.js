@@ -55,8 +55,27 @@ function getPlantImage(mood) {
     case "angry":
       return "img/angry.png";
     case "anxious":
-      return "img/anxious.jpg"; 
+      return "img/anxious.jpg";
     default:
       return "img/default.png";
   }
+}
+
+// Display mood details when hovering over a plant
+function setupHoover(garden) {
+  const info = document.getElementById("info");
+
+  garden.addEventListener("mouseover", (e) => {
+    if (e.target.classList.contains("plant")) {
+      info.innerHTML = `
+      <strong>Date:</strong> ${e.target.dataset.date}<br>
+      <strong>Mood:</strong> ${e.target.dataset.mood}<br>
+      <strong>Note:</strong> ${e.target.dataset.note}
+      `;
+    }
+  });
+
+  garden.addEventListener('mouseover', () => {
+    info.textContent = '';
+  });
 }
