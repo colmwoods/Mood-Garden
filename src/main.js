@@ -1,15 +1,15 @@
 import './style.css'
 
-import { renderHome } from './pages/home.js'
+
 import { renderGarden } from './pages/garden.js'
 import { renderAnalytics } from './pages/analytics.js'
-import { renderHistory } from './pages/history.js'
+import {renderLoggingPage} from './pages/mode.js'
+
 
 const routes = {
-    '/': renderHome,
+    '/': renderLoggingPage,
     '/garden': renderGarden,
     '/analytics': renderAnalytics,
-    '/history': renderHistory
 }
 
 function router() {
