@@ -180,14 +180,15 @@
                             <span>History</span>
                         </button>
                         <!-- TEAM -->
-                        <button id="teamBtn"
+                        <!-- TEAM -->
+                        <button data-page="team"
                             class="nav-link group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition hover:bg-white/5 active:scale-95 w-full text-left">
                             <i class="fas fa-users opacity-60 group-hover:opacity-100 transition"></i>
                             <span>Team</span>
                         </button>
 
                         <!-- HOW TO USE -->
-                        <button id="howToUseBtn"
+                        <button data-page="howto"
                             class="nav-link group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition hover:bg-white/5 active:scale-95 w-full text-left">
                             <i class="fas fa-question-circle opacity-60 group-hover:opacity-100 transition"></i>
                             <span>How To Use</span>
@@ -317,278 +318,293 @@
                             <textarea id="moodInput" rows="3" placeholder="What's on your mind today?" class="rounded-xl bg-black/20 border border-white/10 px-4 py-3 
 text-sm text-white placeholder:text-white/40 outline-none focus:ring-2 
 focus:ring-white/20 resize-none"></textarea>
-                            <!doctype html>
+                        </div>
 
-
-                            <!-- GARDEN -->
-                            <div id="page-garden" class="page flex-col gap-5">
-                                <div>
-                                    <h2 class="text-xl font-semibold">Your Garden 🌿</h2>
-                                    <p class="text-sm text-white/60 mt-1">Every flower is a day you tracked your mood
-                                    </p>
+                        <!-- GARDEN -->
+                        <div id="page-garden" class="page flex-col gap-5">
+                            <div>
+                                <h2 class="text-xl font-semibold">Your Garden 🌿</h2>
+                                <p class="text-sm text-white/60 mt-1">Every flower is a day you tracked your mood
+                                </p>
+                            </div>
+                            <div class="grid grid-cols-4 gap-3 sm:grid-cols-7">
+                                <div
+                                    class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/10 p-3 text-center hover:bg-white/20">
+                                    <span class="text-3xl">🌻</span><span class="text-xs text-white/50">Mon</span>
                                 </div>
-                                <div class="grid grid-cols-4 gap-3 sm:grid-cols-7">
-                                    <div
-                                        class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/10 p-3 text-center hover:bg-white/20">
-                                        <span class="text-3xl">🌻</span><span class="text-xs text-white/50">Mon</span>
-                                    </div>
-                                    <div
-                                        class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/10 p-3 text-center hover:bg-white/20">
-                                        <span class="text-3xl">🌸</span><span class="text-xs text-white/50">Tue</span>
-                                    </div>
-                                    <div
-                                        class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/10 p-3 text-center hover:bg-white/20">
-                                        <span class="text-3xl">🌼</span><span class="text-xs text-white/50">Wed</span>
-                                    </div>
-                                    <div
-                                        class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/10 p-3 text-center hover:bg-white/20">
-                                        <span class="text-3xl">🌷</span><span class="text-xs text-white/50">Thu</span>
-                                    </div>
-                                    <div
-                                        class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/10 p-3 text-center hover:bg-white/20">
-                                        <span class="text-3xl">🥀</span><span class="text-xs text-white/50">Fri</span>
-                                    </div>
-                                    <div
-                                        class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/10 p-3 text-center hover:bg-white/20">
-                                        <span class="text-3xl">🌺</span><span class="text-xs text-white/50">Sat</span>
-                                    </div>
-                                    <div
-                                        class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/5 p-3 text-center opacity-40">
-                                        <span class="text-3xl">🌱</span><span class="text-xs text-white/50">Sun</span>
-                                    </div>
+                                <div
+                                    class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/10 p-3 text-center hover:bg-white/20">
+                                    <span class="text-3xl">🌸</span><span class="text-xs text-white/50">Tue</span>
                                 </div>
-                                <div class="rounded-2xl bg-white/5 border border-white/10 p-4 text-sm text-white/70">
-                                    🌿 <span class="text-white font-medium">6 days</span> logged this week · Most common
-                                    mood: <span class="text-yellow-300">🌻 Happy</span>
+                                <div
+                                    class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/10 p-3 text-center hover:bg-white/20">
+                                    <span class="text-3xl">🌼</span><span class="text-xs text-white/50">Wed</span>
+                                </div>
+                                <div
+                                    class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/10 p-3 text-center hover:bg-white/20">
+                                    <span class="text-3xl">🌷</span><span class="text-xs text-white/50">Thu</span>
+                                </div>
+                                <div
+                                    class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/10 p-3 text-center hover:bg-white/20">
+                                    <span class="text-3xl">🥀</span><span class="text-xs text-white/50">Fri</span>
+                                </div>
+                                <div
+                                    class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/10 p-3 text-center hover:bg-white/20">
+                                    <span class="text-3xl">🌺</span><span class="text-xs text-white/50">Sat</span>
+                                </div>
+                                <div
+                                    class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/5 p-3 text-center opacity-40">
+                                    <span class="text-3xl">🌱</span><span class="text-xs text-white/50">Sun</span>
                                 </div>
                             </div>
+                            <div class="rounded-2xl bg-white/5 border border-white/10 p-4 text-sm text-white/70">
+                                🌿 <span class="text-white font-medium">6 days</span> logged this week · Most common
+                                mood: <span class="text-yellow-300">🌻 Happy</span>
+                            </div>
+                        </div>
 
-                            <!-- ANALYTICS -->
-                            <div id="page-analytics" class="page flex-col gap-5">
-                                <div>
-                                    <h2 class="text-xl font-semibold">Analytics 📊</h2>
-                                    <p class="text-sm text-white/60 mt-1">Your mood patterns over time</p>
+                        <!-- ANALYTICS -->
+                        <div id="page-analytics" class="page flex-col gap-5">
+                            <div>
+                                <h2 class="text-xl font-semibold">Analytics 📊</h2>
+                                <p class="text-sm text-white/60 mt-1">Your mood patterns over time</p>
+                            </div>
+                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                                <div class="rounded-2xl bg-white/10 p-4 text-center">
+                                    <div class="text-3xl mb-1">🌻</div>
+                                    <div class="text-2xl font-bold">68%</div>
+                                    <div class="text-xs text-white/60 mt-1">Happy days</div>
                                 </div>
-                                <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                                    <div class="rounded-2xl bg-white/10 p-4 text-center">
-                                        <div class="text-3xl mb-1">🌻</div>
-                                        <div class="text-2xl font-bold">68%</div>
-                                        <div class="text-xs text-white/60 mt-1">Happy days</div>
-                                    </div>
-                                    <div class="rounded-2xl bg-white/10 p-4 text-center">
-                                        <div class="text-3xl mb-1">🔥</div>
-                                        <div class="text-2xl font-bold">12</div>
-                                        <div class="text-xs text-white/60 mt-1">Day streak</div>
-                                    </div>
-                                    <div class="rounded-2xl bg-white/10 p-4 text-center">
-                                        <div class="text-3xl mb-1">📅</div>
-                                        <div class="text-2xl font-bold">47</div>
-                                        <div class="text-xs text-white/60 mt-1">Total entries</div>
-                                    </div>
+                                <div class="rounded-2xl bg-white/10 p-4 text-center">
+                                    <div class="text-3xl mb-1">🔥</div>
+                                    <div class="text-2xl font-bold">12</div>
+                                    <div class="text-xs text-white/60 mt-1">Day streak</div>
                                 </div>
-                                <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
-                                    <p class="text-sm font-medium mb-3">Mood distribution</p>
-                                    <div class="flex flex-col gap-2 text-sm">
-                                        <div class="flex items-center gap-3"><span class="w-6">🌻</span>
-                                            <div class="flex-1 bg-white/10 rounded-full h-2">
-                                                <div class="bg-yellow-400 h-2 rounded-full" style="width:68%"></div>
-                                            </div><span class="text-white/60 w-8 text-right">68%</span>
-                                        </div>
-                                        <div class="flex items-center gap-3"><span class="w-6">🌸</span>
-                                            <div class="flex-1 bg-white/10 rounded-full h-2">
-                                                <div class="bg-pink-400 h-2 rounded-full" style="width:15%"></div>
-                                            </div><span class="text-white/60 w-8 text-right">15%</span>
-                                        </div>
-                                        <div class="flex items-center gap-3"><span class="w-6">🥀</span>
-                                            <div class="flex-1 bg-white/10 rounded-full h-2">
-                                                <div class="bg-purple-400 h-2 rounded-full" style="width:10%"></div>
-                                            </div><span class="text-white/60 w-8 text-right">10%</span>
-                                        </div>
-                                        <div class="flex items-center gap-3"><span class="w-6">🌾</span>
-                                            <div class="flex-1 bg-white/10 rounded-full h-2">
-                                                <div class="bg-amber-400 h-2 rounded-full" style="width:7%"></div>
-                                            </div><span class="text-white/60 w-8 text-right">7%</span>
-                                        </div>
+                                <div class="rounded-2xl bg-white/10 p-4 text-center">
+                                    <div class="text-3xl mb-1">📅</div>
+                                    <div class="text-2xl font-bold">47</div>
+                                    <div class="text-xs text-white/60 mt-1">Total entries</div>
+                                </div>
+                            </div>
+                            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                                <p class="text-sm font-medium mb-3">Mood distribution</p>
+                                <div class="flex flex-col gap-2 text-sm">
+                                    <div class="flex items-center gap-3"><span class="w-6">🌻</span>
+                                        <div class="flex-1 bg-white/10 rounded-full h-2">
+                                            <div class="bg-yellow-400 h-2 rounded-full" style="width:68%"></div>
+                                        </div><span class="text-white/60 w-8 text-right">68%</span>
+                                    </div>
+                                    <div class="flex items-center gap-3"><span class="w-6">🌸</span>
+                                        <div class="flex-1 bg-white/10 rounded-full h-2">
+                                            <div class="bg-pink-400 h-2 rounded-full" style="width:15%"></div>
+                                        </div><span class="text-white/60 w-8 text-right">15%</span>
+                                    </div>
+                                    <div class="flex items-center gap-3"><span class="w-6">🥀</span>
+                                        <div class="flex-1 bg-white/10 rounded-full h-2">
+                                            <div class="bg-purple-400 h-2 rounded-full" style="width:10%"></div>
+                                        </div><span class="text-white/60 w-8 text-right">10%</span>
+                                    </div>
+                                    <div class="flex items-center gap-3"><span class="w-6">🌾</span>
+                                        <div class="flex-1 bg-white/10 rounded-full h-2">
+                                            <div class="bg-amber-400 h-2 rounded-full" style="width:7%"></div>
+                                        </div><span class="text-white/60 w-8 text-right">7%</span>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- HISTORY -->
-                            <div id="page-history" class="page flex-col gap-5">
-                                <div>
-                                    <h2 class="text-xl font-semibold">History 🕰️</h2>
-                                    <p class="text-sm text-white/60 mt-1">All your past mood entries</p>
+                        <!-- HISTORY -->
+                        <div id="page-history" class="page flex-col gap-5">
+                            <div>
+                                <h2 class="text-xl font-semibold">History 🕰️</h2>
+                                <p class="text-sm text-white/60 mt-1">All your past mood entries</p>
+                            </div>
+                            <div class="flex flex-col gap-3">
+                                <div
+                                    class="flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3 hover:bg-white/15 transition">
+                                    <span class="text-3xl">🌻</span>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium">Happy</p>
+                                        <p class="text-xs text-white/50">Today, 09:14 · "Had a great morning walk"
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="flex flex-col gap-3">
-                                    <div
-                                        class="flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3 hover:bg-white/15 transition">
-                                        <span class="text-3xl">🌻</span>
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium">Happy</p>
-                                            <p class="text-xs text-white/50">Today, 09:14 · "Had a great morning walk"
-                                            </p>
-                                        </div>
+                                <div
+                                    class="flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3 hover:bg-white/15 transition">
+                                    <span class="text-3xl">🌸</span>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium">Calm</p>
+                                        <p class="text-xs text-white/50">Yesterday, 21:30 · "Quiet evening at home"
+                                        </p>
                                     </div>
-                                    <div
-                                        class="flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3 hover:bg-white/15 transition">
-                                        <span class="text-3xl">🌸</span>
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium">Calm</p>
-                                            <p class="text-xs text-white/50">Yesterday, 21:30 · "Quiet evening at home"
-                                            </p>
-                                        </div>
+                                </div>
+                                <div
+                                    class="flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3 hover:bg-white/15 transition">
+                                    <span class="text-3xl">🌼</span>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium">Happy</p>
+                                        <p class="text-xs text-white/50">Feb 26, 18:00 · "Finished a big project"
+                                        </p>
                                     </div>
-                                    <div
-                                        class="flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3 hover:bg-white/15 transition">
-                                        <span class="text-3xl">🌼</span>
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium">Happy</p>
-                                            <p class="text-xs text-white/50">Feb 26, 18:00 · "Finished a big project"
-                                            </p>
-                                        </div>
+                                </div>
+                                <div
+                                    class="flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3 hover:bg-white/15 transition">
+                                    <span class="text-3xl">🥀</span>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium">Sad</p>
+                                        <p class="text-xs text-white/50">Feb 25, 20:15 · "Feeling a bit low"</p>
                                     </div>
-                                    <div
-                                        class="flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3 hover:bg-white/15 transition">
-                                        <span class="text-3xl">🥀</span>
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium">Sad</p>
-                                            <p class="text-xs text-white/50">Feb 25, 20:15 · "Feeling a bit low"</p>
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3 hover:bg-white/15 transition">
-                                        <span class="text-3xl">🌺</span>
-                                        <div class="flex-1">
-                                            <p class="text-sm font-medium">Excited</p>
-                                            <p class="text-xs text-white/50">Feb 24, 11:00 · "New idea for the app!"</p>
-                                        </div>
+                                </div>
+                                <div
+                                    class="flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3 hover:bg-white/15 transition">
+                                    <span class="text-3xl">🌺</span>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium">Excited</p>
+                                        <p class="text-xs text-white/50">Feb 24, 11:00 · "New idea for the app!"</p>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
+                        <!-- TEAM -->
+                        <div id="page-team" class="page flex-col gap-5"></div>
+
+                        <!-- HOW TO USE -->
+                        <div id="page-howto" class="page flex-col gap-5"></div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <script>
-            const sidebar = document.getElementById('sidebar');
+    <script>
+        const sidebar = document.getElementById('sidebar');
 
-            function openSidebar() {
-                sidebar.classList.remove('hidden');
-                sidebar.classList.add('flex', 'absolute', 'inset-y-0', 'left-0', 'bg-black/90');
+        function openSidebar() {
+            sidebar.classList.remove('hidden');
+            sidebar.classList.add('flex', 'absolute', 'inset-y-0', 'left-0', 'bg-black/90');
+        }
+
+        function closeSidebar() {
+            const isLg = window.innerWidth >= 1024;
+            if (!isLg) {
+                sidebar.classList.add('hidden');
+                sidebar.classList.remove('flex', 'absolute', 'inset-y-0', 'left-0', 'bg-black/90');
+            }
+        }
+
+        document.getElementById('mobile-open-btn').addEventListener('click', openSidebar);
+        document.getElementById('mobile-open-btn2').addEventListener('click', openSidebar);
+        document.getElementById('sidebar-close-btn').addEventListener('click', closeSidebar);
+
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+
+            const page = document.getElementById('page-' + pageId);
+
+            if (page) {
+                page.classList.add('active');
             }
 
-            function closeSidebar() {
-                const isLg = window.innerWidth >= 1024;
-                if (!isLg) {
-                    sidebar.classList.add('hidden');
-                    sidebar.classList.remove('flex', 'absolute', 'inset-y-0', 'left-0', 'bg-black/90');
-                }
-            }
+            document.querySelectorAll('[data-page="' + pageId + '"]').forEach(el =>
+                el.classList.add('active')
+            );
 
-            document.getElementById('mobile-open-btn').addEventListener('click', openSidebar);
-            document.getElementById('mobile-open-btn2').addEventListener('click', openSidebar);
-            document.getElementById('sidebar-close-btn').addEventListener('click', closeSidebar);
-
-            function navigateTo(pageId) {
-                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-
-                const page = document.getElementById('page-' + pageId);
-                if (page) page.classList.add('active');
-
-                document.querySelectorAll('[data-page="' + pageId + '"]').forEach(el => el.classList.add('active'));
-
-                closeSidebar();
-            }
-
-            document.querySelectorAll('[data-page]').forEach(el => {
-                el.addEventListener('click', () => navigateTo(el.dataset.page));
-            });
-
-            navigateTo('home');
-            document.getElementById("teamBtn").addEventListener("click", () => {
-                showTeamModal();
-            });
-
-            document.getElementById("howToUseBtn").addEventListener("click", () => {
-                showHowToUseModal();
-            });
-        </script>
-
-
-        <!-- MOOD SCRIPT (Azamat) -->
-        <script>
-            const moodInput = document.getElementById("moodInput");
-            const moodButtons = document.querySelectorAll(".moodBtn");
-
-            /* Mood keyword dictionary */
-            const moodKeywords = {
-                happy: ["happy", "great", "good", "awesome", "excited", "joy", "fun"],
-                calm: ["calm", "peaceful", "relaxed", "quiet", "chill"],
-                sad: ["sad", "down", "unhappy", "depressed", "lonely"],
-                angry: ["angry", "mad", "furious", "annoyed", "irritated"],
-                anxious: ["anxious", "worried", "stress", "nervous", "afraid"]
-            };
-
-
-            /* Remove highlight from all buttons */
-            function clearMoodHighlight() {
-                moodButtons.forEach(btn => {
-                    btn.classList.remove("ring-4", "ring-emerald-400", "bg-white/20");
+            if (pageId === "team") {
+                import("/src/pages/team.js").then(module => {
+                    module.renderTeam();
                 });
             }
 
-
-            /* Highlight selected mood button */
-            function highlightMood(mood) {
-
-                clearMoodHighlight();
-
-                const button = document.querySelector(
-                    `.moodBtn[data-mood="${mood}"]`
-                );
-
-                if (button) {
-                    button.classList.add(
-                        "ring-4",
-                        "ring-emerald-400",
-                        "bg-white/20"
-                    );
-                }
+            if (pageId === "howto") {
+                import("/src/pages/howtouse.js").then(module => {
+                    module.renderHowToUse();
+                });
             }
 
+            closeSidebar();
+        }
 
-            /* Detect mood from text */
-            function detectMoodFromText() {
+        document.querySelectorAll('[data-page]').forEach(el => {
+            el.addEventListener('click', () => navigateTo(el.dataset.page));
+        });
 
-                const text = moodInput.value.toLowerCase();
+        navigateTo('home');
 
-                for (const mood in moodKeywords) {
+    </script>
 
-                    const keywords = moodKeywords[mood];
 
-                    for (const word of keywords) {
+    <!-- MOOD SCRIPT (Azamat) -->
+    <script>
+        const moodInput = document.getElementById("moodInput");
+        const moodButtons = document.querySelectorAll(".moodBtn");
 
-                        if (text.includes(word)) {
-                            highlightMood(mood);
-                            return;
-                        }
+        /* Mood keyword dictionary */
+        const moodKeywords = {
+            happy: ["happy", "great", "good", "awesome", "excited", "joy", "fun"],
+            calm: ["calm", "peaceful", "relaxed", "quiet", "chill"],
+            sad: ["sad", "down", "unhappy", "depressed", "lonely"],
+            angry: ["angry", "mad", "furious", "annoyed", "irritated"],
+            anxious: ["anxious", "worried", "stress", "nervous", "afraid"]
+        };
 
+
+        /* Remove highlight from all buttons */
+        function clearMoodHighlight() {
+            moodButtons.forEach(btn => {
+                btn.classList.remove("ring-4", "ring-emerald-400", "bg-white/20");
+            });
+        }
+
+
+        /* Highlight selected mood button */
+        function highlightMood(mood) {
+
+            clearMoodHighlight();
+
+            const button = document.querySelector(
+                `.moodBtn[data-mood="${mood}"]`
+            );
+
+            if (button) {
+                button.classList.add(
+                    "ring-4",
+                    "ring-emerald-400",
+                    "bg-white/20"
+                );
+            }
+        }
+
+
+        /* Detect mood from text */
+        function detectMoodFromText() {
+
+            const text = moodInput.value.toLowerCase();
+
+            for (const mood in moodKeywords) {
+
+                const keywords = moodKeywords[mood];
+
+                for (const word of keywords) {
+
+                    if (text.includes(word)) {
+                        highlightMood(mood);
+                        return;
                     }
 
                 }
 
-                clearMoodHighlight();
             }
 
+            clearMoodHighlight();
+        }
 
-            /* Live detection while typing */
-            moodInput.addEventListener("input", detectMoodFromText);
-        </script>
-        <script type="module" src="/src/main.js"></script>
+
+        /* Live detection while typing */
+        moodInput.addEventListener("input", detectMoodFromText);
+    </script>
+    <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>

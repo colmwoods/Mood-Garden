@@ -3,12 +3,13 @@ import './styles/main.css'
 import { renderGarden } from './pages/garden.js'
 import { renderAnalytics } from './pages/analytics.js'
 
-import { showTeamModal } from "./pages/team.js"
+import { renderTeam } from "./pages/team.js"
 import { showHowToUseModal } from "./pages/howtouse.js"
 
 const routes = {
     '/garden': renderGarden,
-    '/analytics': renderAnalytics
+    '/analytics': renderAnalytics,
+    '/team': renderTeam
 }
 
 function router() {

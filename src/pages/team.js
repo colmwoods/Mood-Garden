@@ -1,97 +1,83 @@
-export function showTeamModal() {
-    let modal = document.getElementById('teamModal');
+// /src/pages/team.js
 
-    if (!modal) {
-        modal = document.createElement('div');
-        modal.id = 'teamModal';
-        modal.classList.add('team-modal-overlay');
+export function renderTeam() {
+    const container = document.getElementById("page-team");
+    if (!container) return;
 
-        modal.innerHTML = `
-            <div class="team-modal-content">
-                <button class="team-close-btn">&times;</button>
-                <h2 class="team-title">🌿 Meet the Mood-Garden Team</h2>
-
-                <div class="team-grid">
-
-                    <div class="team-card">
-                        <img src="/images/colm.jpg" alt="Colm Woods">
-                        <h3>Colm Woods</h3>
-                        <div class="team-links">
-                            <a href="https://github.com/colmwoods" target="_blank" rel="noopener noreferrer" aria-label="Colm GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://linkedin.com/in/colm-woods" target="_blank" rel="noopener noreferrer" aria-label="Colm LinkedIn">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <img src="/images/aisha.jpg" alt="Aisha">
-                        <h3>Aisha</h3>
-                        <div class="team-links">
-                            <a href="https://github.com/Aishieee" target="_blank" rel="noopener noreferrer" aria-label="Aisha GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/aishasheikh2k1/" target="_blank" rel="noopener noreferrer" aria-label="Aisha LinkedIn">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <img src="/images/akashebaev-ux.jpg" alt="Azamat">
-                        <h3>akashebaev-ux</h3>
-                        <div class="team-links">
-                            <a href="https://github.com/akashebaev-ux" target="_blank" rel="noopener noreferrer" aria-label="Azamat GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/azamat-kashebayev/" target="_blank" rel="noopener noreferrer" aria-label="Azamat LinkedIn">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <img src="/images/barkode.jpg" alt="barkode">
-                        <h3>barkode</h3>
-                        <div class="team-links">
-                            <a href="https://github.com/barkode" target="_blank" rel="noopener noreferrer" aria-label="barkode GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/kostiantyn-krysenko/" target="_blank" rel="noopener noreferrer" aria-label="barkode LinkedIn">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <img src="/images/11florin.jpg" alt="Florin">
-                        <h3>11florin</h3>
-                        <div class="team-links">
-                            <a href="https://github.com/11florin" target="_blank" rel="noopener noreferrer" aria-label="Florin GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/florin-albu-0750b6238/" target="_blank" rel="noopener noreferrer" aria-label="Florin LinkedIn">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
+    container.innerHTML = `
+        <div class="flex flex-col gap-6">
+            
+            <div>
+                <h2 class="text-xl font-semibold">🌿 Meet the Mood Garden Team</h2>
+                <p class="text-sm text-white/60 mt-1">
+                    The people behind the project
+                </p>
             </div>
-        `;
 
-        document.body.appendChild(modal);
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        modal.querySelector('.team-close-btn').addEventListener('click', () => {
-            modal.remove();
-        });
+                ${teamCard(
+        "colm.jpg",
+        "Colm Woods",
+        "https://github.com/colmwoods",
+        "https://linkedin.com/in/colm-woods"
+    )}
 
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.remove();
-            }
-        });
-    }
+                ${teamCard(
+        "aisha.jpg",
+        "Aisha",
+        "https://github.com/Aishieee",
+        "https://www.linkedin.com/in/aishasheikh2k1/"
+    )}
+
+                ${teamCard(
+        "akashebaev-ux.jpg",
+        "Azamat Kashebayev",
+        "https://github.com/akashebaev-ux",
+        "https://www.linkedin.com/in/azamat-kashebayev/"
+    )}
+
+                ${teamCard(
+        "barkode.jpg",
+        "Kostiantyn Krysenko",
+        "https://github.com/barkode",
+        "https://www.linkedin.com/in/kostiantyn-krysenko/"
+    )}
+
+                ${teamCard(
+        "11florin.jpg",
+        "Florin Albu",
+        "https://github.com/11florin",
+        "https://www.linkedin.com/in/florin-albu-0750b6238/"
+    )}
+
+            </div>
+        </div>
+    `;
+}
+
+function teamCard(image, name, github, linkedin) {
+    return `
+        <div class="rounded-2xl bg-white/10 p-6 text-center hover:bg-white/20 transition">
+            
+            <img 
+                src="/images/${image}" 
+                alt="${name}" 
+                class="w-24 h-24 mx-auto rounded-full mb-4 object-cover"
+            >
+
+            <h3 class="font-semibold mb-3">${name}</h3>
+
+            <div class="flex justify-center gap-6 text-2xl">
+                <a href="${github}" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github hover:text-yellow-400 transition"></i>
+                </a>
+
+                <a href="${linkedin}" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-linkedin hover:text-yellow-400 transition"></i>
+                </a>
+            </div>
+
+        </div>
+    `;
 }
