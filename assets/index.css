@@ -1,0 +1,32 @@
+/* ===== Base ===== */
+  
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Poppins", Segoe UI, Roboto, Arial, sans-serif;
+    color: #ffffff;
+    min-height: 100vh;
+    background-color: #0d900d; 
+}
+
+/* Header */
+.brand-title {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-align: center;
+  }
+  
+  /* Different colour for each letter */
+  .brand-title span:nth-child(1) { color: #A8E6CF; } 
+  .brand-title span:nth-child(2) { color: #56C596; } 
+  .brand-title span:nth-child(3) { color: #88D498; }
+  .brand-title span:nth-child(4) { color: #379683; }
+  
+  .brand-title span:nth-child(6) { color: #F6D55C; } 
+  .brand-title span:nth-child(7) { color: #ED553B; } 
+  .brand-title span:nth-child(8) { color: #3CAEA3; } 
+  .brand-title span:nth-child(9) { color: #A8E6CF; }
+  .brand-title span:nth-child(10) { color: #88D498; }
+  .brand-title span:nth-child(11) { color: #56C596; }
+
