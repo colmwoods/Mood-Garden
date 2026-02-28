@@ -1,3 +1,5 @@
+
+
 export function renderGarden() {
   document.getElementById("app").innerHTML = `
     <h1>🌿 Garden</h1>
@@ -23,4 +25,22 @@ function initGardenLogic() {
 
   // Enable navigation back to the home page
   setupBackButton();
+}
+
+// Create a plant element for every mood entry
+function renderAllPlants(moods, garden) {
+  moods.forEach(entry => {
+    const plant = document.createElement('img');
+
+    //Chose the correct pant image based on mood type
+    plant.src = getPlantImage(entry.mood);
+    plant.classList.add('plant');
+
+    // Store useful information for hoover display
+    plant.dataset.date = entry.date;
+    plant.dataset.mood = entry.mood;
+    plant.dataset.note = entry.note || 'No notes';
+
+    garden.appendChild(plant);
+  });
 }
