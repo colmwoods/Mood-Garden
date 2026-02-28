@@ -1,5 +1,3 @@
-
-
 export function renderGarden() {
   document.getElementById("app").innerHTML = `
     <h1>🌿 Garden</h1>
@@ -15,7 +13,7 @@ export function renderGarden() {
 function initGardenLogic() {
   // Retrive all saved mood entries from storage
   const moods = getMoods();
-  const garden = document.getElementById('garden');
+  const garden = document.getElementById("garden");
 
   // Render a plant for each logged mood
   renderAllPlants(moods, garden);
@@ -29,18 +27,36 @@ function initGardenLogic() {
 
 // Create a plant element for every mood entry
 function renderAllPlants(moods, garden) {
-  moods.forEach(entry => {
-    const plant = document.createElement('img');
+  moods.forEach((entry) => {
+    const plant = document.createElement("img");
 
     //Chose the correct pant image based on mood type
     plant.src = getPlantImage(entry.mood);
-    plant.classList.add('plant');
+    plant.classList.add("plant");
 
     // Store useful information for hoover display
     plant.dataset.date = entry.date;
     plant.dataset.mood = entry.mood;
-    plant.dataset.note = entry.note || 'No notes';
+    plant.dataset.note = entry.note || "No notes";
 
     garden.appendChild(plant);
   });
+}
+
+// Return the appropriate plant image for each mood
+function getPlantImage(mood) {
+  switch (mood) {
+    case "happy":
+      return "img/happy.jpg";
+    case "sad":
+      return "img/sad.png";
+    case "calm":
+      return "img/calm.png";
+    case "angry":
+      return "img/angry.png";
+    case "anxious":
+      return "img/anxious.jpg"; 
+    default:
+      return "img/default.png";
+  }
 }
