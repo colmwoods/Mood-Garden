@@ -557,6 +557,12 @@ focus:ring-white/20 resize-none"></textarea>
                 });
             }
 
+            if (pageId === "analytics") {
+                import("/src/pages/analytics.js").then(module => {
+                    module.loadAnalytics();
+                });
+            }
+
             closeSidebar();
         }
 
