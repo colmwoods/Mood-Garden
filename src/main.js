@@ -5,11 +5,16 @@ import { renderGarden } from './pages/garden.js';
 
 import { renderTeam } from "./pages/team.js"
 
+import {MoodStorage} from '/src/storage.js'
+
+MoodStorage.init();
+
 const routes = {
     '/garden': renderGarden,
     '/analytics': renderAnalytics,
     '/team': renderTeam
 }
+
 
 function router() {
   const path = location.hash.replace('#', '');
