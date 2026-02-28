@@ -109,3 +109,23 @@
     color: #ffcc00;
     text-align: center;
 }
+
+.team-links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    /* more spacing */
+    margin-top: 12px;
+}
+
+.team-links a {
+    font-size: 2rem;
+    /* bigger than 5rem */
+    color: #4CAF50;
+    transition: all 0.25s ease;
+}
+
+.team-links a:hover {
+    color: #ffd700;
+    transform: scale(1.15);
+}
