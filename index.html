@@ -318,6 +318,40 @@
                             <textarea id="moodInput" rows="3" placeholder="What's on your mind today?" class="rounded-xl bg-black/20 border border-white/10 px-4 py-3 
 text-sm text-white placeholder:text-white/40 outline-none focus:ring-2 
 focus:ring-white/20 resize-none"></textarea>
+
+                             <button id="submitMoodBtn"
+                            class="rounded-xl bg-emerald-500 hover:bg-emerald-600 px-6 py-3
+                            font-medium transition mt-2">
+                            Submit Mood 🌱
+                            </button>
+
+
+                            <!-- ✅ ERROR MESSAGE -->
+
+                            <p id="logError" class="text-red-300 text-sm"></p>
+
+
+                            <!-- ✅ CONFIRMATION CARD -->
+
+                            <div id="confirmationCard"
+                                class="hidden rounded-2xl bg-white/10 border border-white/20 p-5 mt-4">
+
+                                <h3 class="text-lg font-semibold mb-2">
+                                Mood Saved 🌱
+                                </h3>
+
+                                <p id="confirmMood"></p>
+                                <p id="confirmDate"></p>
+
+                                <button id="backHomeBtn"
+                                class="mt-4 rounded-xl bg-white/20 px-4 py-2 hover:bg-white/30">
+                                Return Home
+                                </button>
+
+                            </div>
+
+
+
                         </div>
 
                         <!-- GARDEN -->
@@ -419,7 +453,7 @@ focus:ring-white/20 resize-none"></textarea>
                                 <h2 class="text-xl font-semibold">History 🕰️</h2>
                                 <p class="text-sm text-white/60 mt-1">All your past mood entries</p>
                             </div>
-                            <div class="flex flex-col gap-3">
+                            <div id="historyContainer" class="flex flex-col gap-3">
                                 <div
                                     class="flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3 hover:bg-white/15 transition">
                                     <span class="text-3xl">🌻</span>
@@ -578,33 +612,224 @@ focus:ring-white/20 resize-none"></textarea>
 
 
         /* Detect mood from text */
-        function detectMoodFromText() {
+      function detectMoodFromText() {
 
-            const text = moodInput.value.toLowerCase();
+    const text =
+    moodInput.value.toLowerCase();
 
-            for (const mood in moodKeywords) {
+    if (text.includes("angry")) {
+        highlightMood("angry");
+        return;
+    }
 
-                const keywords = moodKeywords[mood];
+    if (text.includes("sad")) {
+        highlightMood("sad");
+        return;
+    }
 
-                for (const word of keywords) {
+    if (text.includes("anxious")) {
+        highlightMood("anxious");
+        return;
+    }
 
-                    if (text.includes(word)) {
-                        highlightMood(mood);
-                        return;
-                    }
+    if (text.includes("calm")) {
+        highlightMood("calm");
+        return;
+    }
 
-                }
+    if (text.includes("happy") || text.includes("good")) {
+        highlightMood("happy");
+        return;
+    }
 
-            }
+    clearMoodHighlight();
 
-            clearMoodHighlight();
-        }
+}
+    
 
 
         /* Live detection while typing */
         moodInput.addEventListener("input", detectMoodFromText);
     </script>
+    <script src="storage.js"></script>
     <script type="module" src="/src/main.js"></script>
+
+
+    <script>
+
+const moodFlowers = {
+
+    happy: "🌻",
+    calm: "🌸",
+    sad: "🥀",
+    angry: "🌹",
+    anxious: "🌾"
+
+};
+
+
+/* ---------- ADD TO HISTORY ---------- */
+
+function addToHistory(mood, note, date) {
+
+    const container =
+    document.getElementById("historyContainer");
+
+    if(!container) return;
+
+
+    const flower =
+    moodFlowers[mood] || "🌱";
+
+
+    const entry =
+    document.createElement("div");
+
+    entry.className =
+    "flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3 hover:bg-white/15 transition";
+
+
+    entry.innerHTML = `
+
+    <span class="text-3xl">${flower}</span>
+
+    <div class="flex-1">
+
+    <p class="text-sm font-medium">
+    ${mood.charAt(0).toUpperCase() + mood.slice(1)}
+    </p>
+
+    <p class="text-xs text-white/50">
+    ${date} · "${note}"
+    </p>
+
+    </div>
+
+    `;
+
+
+    container.prepend(entry);
+
+}
+
+
+/* ---------- LOAD HISTORY ---------- */
+
+function loadHistoryFromStorage() {
+
+    const container =
+    document.getElementById("historyContainer");
+
+    if (!container) return;
+
+    let logs =
+    JSON.parse(localStorage.getItem("moodLogs")) || [];
+
+
+    logs.forEach(entry => {
+
+        addToHistory(
+            entry.mood,
+            entry.note,
+            entry.date
+        );
+
+    });
+
+}
+
+function getMoodFromText(note) {
+
+    const text = note.toLowerCase();
+
+    if (text.includes("angry")) return "angry";
+    if (text.includes("sad")) return "sad";
+    if (text.includes("anxious")) return "anxious";
+    if (text.includes("calm")) return "calm";
+    if (text.includes("happy") || text.includes("good")) return "happy";
+
+    return null;
+
+}
+/* ---------- SUBMIT BUTTON ---------- */
+
+    document.getElementById("submitMoodBtn")
+.addEventListener("click", function() {
+
+    const note = moodInput.value;
+
+    /* Detect mood directly */
+    let mood = getMoodFromText(note);
+
+    if (!mood) {
+
+        document.getElementById("logError").innerText =
+        "Type a mood like sad, angry, calm or happy.";
+
+        return;
+
+    }
+
+    const success =
+    saveMood(mood, note);
+
+    if (!success) {
+
+        document.getElementById("logError").innerText =
+        "You already logged mood today.";
+
+        return;
+    }
+
+    const today =
+    new Date().toDateString();
+
+
+    /* Confirmation */
+
+    document.getElementById("confirmationCard")
+    .classList.remove("hidden");
+
+    document.getElementById("confirmMood")
+    .innerText = "Mood: " + mood;
+
+    document.getElementById("confirmDate")
+    .innerText = "Date: " + today;
+
+
+    /* History */
+
+    addToHistory(mood, note, today);
+
+});
+
+/* ---------- RETURN HOME ---------- */
+
+document.getElementById("backHomeBtn")
+.addEventListener("click", function(){
+
+navigateTo("home");
+
+});
+
+
+/* ---------- LOAD HISTORY WHEN OPEN ---------- */
+
+const oldNavigate = navigateTo;
+
+navigateTo = function(pageId){
+
+    oldNavigate(pageId);
+
+    if(pageId === "history"){
+
+        loadHistoryFromStorage();
+
+    }
+
+}
+
+</script>
 </body>
 
 </html>
