@@ -79,3 +79,68 @@ body {
   .header-btn:hover {
     background-color: #FFD84D; 
   }
+
+
+/* ===== Homepage ===== */
+
+/* Cards section */
+.features {
+    padding: 50px 16px;
+  }
+  
+  .features__inner {
+    max-width: 1050px;
+    margin: 0 auto;
+  }
+  
+  /* Card grid */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+  
+  /* Card */
+  .card {
+    padding: 18px;
+    border-radius: 18px;
+    text-align: center;
+  
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(8px);
+  
+    transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.22);
+  }
+  
+/* Icon */
+  
+  /* Title */
+  .card__title {
+    margin: 18px 0 8px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  /* Text */
+  .card__text {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  
+
+  /* Mobile */
+  @media (max-width: 900px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+ }
