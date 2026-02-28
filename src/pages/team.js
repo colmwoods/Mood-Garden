@@ -50,7 +50,7 @@ export function showTeamModal() {
                     </div>
 
                     <div class="team-card">
-                        <img src="/images/florin.jpg" alt="Florin">
+                        <img src="/images/11florin.jpg" alt="Florin">
                         <h3>11florin</h3>
                         <div class="team-links">
                             <a href="https://github.com/11florin" target="_blank">GitHub</a>
