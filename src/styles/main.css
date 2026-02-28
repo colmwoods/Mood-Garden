@@ -1,1 +1,131 @@
-@import "tailwindcss";
+/* ================= TEAM MODAL ================= */
+
+.team-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.team-modal-content {
+    background: linear-gradient(to bottom, #1a237e, #0c1643);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 900px;
+    width: 90%;
+    border: 3px solid #ffcc00;
+    position: relative;
+}
+
+.team-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #ffcc00;
+    margin-bottom: 30px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+}
+
+.team-card {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 20px;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-6px);
+}
+
+.team-card img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ffcc00;
+    margin-bottom: 10px;
+}
+
+.team-card h3 {
+    color: #ffcc00;
+    margin-bottom: 10px;
+}
+
+.team-links a {
+    color: #4CAF50;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin: 0 6px;
+}
+
+.team-links a:hover {
+    text-decoration: underline;
+}
+
+.team-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.team-close-btn:hover {
+    background: #ff3333;
+}
+
+/* ================= HOW TO USE CONTENT ================= */
+
+.howto-content ul {
+    list-style: disc;
+    padding-left: 25px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: white;
+}
+
+.howto-content li {
+    margin-bottom: 10px;
+}
+
+.howto-note {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #ffcc00;
+    text-align: center;
+}
+
+.team-links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    /* more spacing */
+    margin-top: 12px;
+}
+
+.team-links a {
+    font-size: 2rem;
+    /* bigger than 5rem */
+    color: #4CAF50;
+    transition: all 0.25s ease;
+}
+
+.team-links a:hover {
+    color: #ffd700;
+    transform: scale(1.15);
+}

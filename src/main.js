@@ -1,26 +1,37 @@
-import './style.css'
+import './styles/main.css';
 
+import { renderAnalytics } from './pages/analytics.js';
+import { renderGarden } from './pages/garden.js';
 
-import { renderGarden } from './pages/garden.js'
-import { renderAnalytics } from './pages/analytics.js'
-import {renderLoggingPage} from './pages/mode.js'
-
+import { showHowToUseModal } from './pages/howtouse.js';
+import { showTeamModal } from './pages/team.js';
 
 const routes = {
-    '/': renderLoggingPage,
-    '/garden': renderGarden,
-    '/analytics': renderAnalytics,
-}
+  '/garden': renderGarden,
+  '/analytics': renderAnalytics,
+};
 
 function router() {
-    const path = location.hash.replace('#', '') || '/'
-    const page = routes[path] || renderLoggingPage
+  const path = location.hash.replace('#', '');
 
-    const app = document.getElementById('app')
-    app.innerHTML = ''
+  if (!path) return; // Stay on index.html main layout
 
-    page()
+  const page = routes[path];
+
+  if (!page) return;
+
+  const app = document.getElementById('app');
+  app.innerHTML = '';
+  page();
 }
 
-window.addEventListener('hashchange', router)
-window.addEventListener('load', router)
+window.addEventListener('hashchange', router);
+window.addEventListener('load', router);
+
+window.addEventListener('DOMContentLoaded', () => {
+  const teamBtn = document.getElementById('teamBtn');
+  const howToUseBtn = document.getElementById('howToUseBtn');
+
+  if (teamBtn) teamBtn.onclick = showTeamModal;
+  if (howToUseBtn) howToUseBtn.onclick = showHowToUseModal;
+});
