@@ -12,6 +12,7 @@ export function showTeamModal() {
                 <h2>🌿 Meet the Mood-Garden Team</h2>
 
                 <div class="team-member">
+                    <img src="/images/colm.jpg" alt="Colm Woods" class="team-img">
                     <h3>Colm Woods</h3>
                     <div class="social-links">
                         <a href="https://github.com/colmwoods" target="_blank">GitHub</a>
@@ -20,6 +21,7 @@ export function showTeamModal() {
                 </div>
 
                 <div class="team-member">
+                    <img src="/images/aisha.jpg" alt="Aisha" class="team-img">
                     <h3>Aisha</h3>
                     <div class="social-links">
                         <a href="https://github.com/Aishieee" target="_blank">GitHub</a>
@@ -28,6 +30,7 @@ export function showTeamModal() {
                 </div>
 
                 <div class="team-member">
+                    <img src="/images/akashebaev-ux.jpg" alt="Azamat" class="team-img">
                     <h3>akashebaev-ux</h3>
                     <div class="social-links">
                         <a href="https://github.com/akashebaev-ux" target="_blank">GitHub</a>
@@ -36,16 +39,17 @@ export function showTeamModal() {
                 </div>
 
                 <div class="team-member">
+                    <img src="/images/barkode.jpg" alt="barkode" class="team-img">
                     <h3>barkode</h3>
                     <div class="social-links">
                         <a href="https://github.com/barkode" target="_blank">GitHub</a>
-                        <a href="https://linkedin.com/in/" target="_blank">LinkedIn</a>
+                        <a href="#" target="_blank">LinkedIn</a>
                     </div>
                 </div>
 
                 <div class="team-member">
+                    <img src="/images/florin.jpg" alt="Florin" class="team-img">
                     <h3>11florin</h3>
-                    <p>Garden Rendering</p>
                     <div class="social-links">
                         <a href="https://github.com/11florin" target="_blank">GitHub</a>
                         <a href="https://www.linkedin.com/in/florin-albu-0750b6238/" target="_blank">LinkedIn</a>
