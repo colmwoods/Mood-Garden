@@ -4,7 +4,6 @@ import { renderGarden } from './pages/garden.js'
 import { renderAnalytics } from './pages/analytics.js'
 
 import { renderTeam } from "./pages/team.js"
-import { showHowToUseModal } from "./pages/howtouse.js"
 
 const routes = {
     '/garden': renderGarden,
