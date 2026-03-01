@@ -42,7 +42,7 @@ document.getElementById('mobile-open-btn').addEventListener('click', openSidebar
 document.getElementById('mobile-open-btn2').addEventListener('click', openSidebar);
 document.getElementById('sidebar-close-btn').addEventListener('click', closeSidebar);
 
-function navigateTo(pageId) {
+export function navigateTo(pageId) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
 
