@@ -62,6 +62,11 @@ const io = {
     }
 };
 
+const formatDate = (date) => {
+    const d = new Date(date);
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
 /**
  * Public API
  */
@@ -167,11 +172,14 @@ export const moodStorage = {
     }
 };
 
-export const init = () => moodStorage.init();
-export const getSettings = () => moodStorage.getSettings();
-export const updateSettings = (patch) => moodStorage.updateSettings(patch);
-export const saveEntry = (entry) => moodStorage.saveEntry(entry);
-export const getEntryByDate = (date) => moodStorage.getEntryByDate(date);
-export const getHistory = () => moodStorage.getHistory();
-export const deleteEntry = (date) => moodStorage.deleteEntry(date);
-export const clearAll = () => moodStorage.clearAll();
+export const storage = {
+    init:              () => moodStorage.init(),
+    getSettings:       () => moodStorage.getSettings(),
+    updateSettings: (patch) => moodStorage.updateSettings(patch),
+    saveEntry:       (entry) => moodStorage.saveEntry(entry),
+    getEntryByDate:   (date) => moodStorage.getEntryByDate(date),
+    getHistory:        () => moodStorage.getHistory(),
+    deleteEntry:       (date) => moodStorage.deleteEntry(date),
+    clearAll:          () => moodStorage.clearAll(),
+    formatDate:        (date) => formatDate(date),
+};
