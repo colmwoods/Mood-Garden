@@ -3,18 +3,21 @@ import './styles/main.css';
 
 import { renderAnalytics } from './pages/analytics.js';
 import { renderGardenPage } from './pages/garden.js';
-import { renderTeamPage } from "./pages/team.js"
 import { renderHistoryPage } from './pages/history.js';
-import { renderHowToUsePage } from './pages/howtouse.js';
 import { renderHomePage } from "./pages/home.js";
 import { renderMoodPage } from "./pages/mood.js";
 
 
 moodStorage.init();
 
+const lazyPages = {
+    team: () => import('./pages/team.js').then(m => m.renderTeamPage()),
+    howto: () => import('./pages/howtouse.js').then(m => m.renderHowToUsePage()),
+};
+
 renderHistoryPage();
-renderTeamPage();
-renderHowToUsePage();
+// renderTeamPage();
+// renderHowToUsePage();
 renderGardenPage();
 renderAnalytics();
 renderHomePage();
@@ -53,17 +56,23 @@ function navigateTo(pageId) {
         el.classList.add('active')
     );
 
-    if (pageId === "team") {
-        import("/src/pages/team.js").then(module => {
-            module.renderTeam();
-        });
+    // Lazy-load для team і howto
+    if (lazyPages[pageId]) {
+        lazyPages[pageId]();
+        delete lazyPages[pageId]; // Download the module only once
     }
 
-    if (pageId === "howto") {
-        import("/src/pages/howtouse.js").then(module => {
-            module.renderHowToUse();
-        });
-    }
+    // if (pageId === "team") {
+    //     import("/src/pages/team.js").then(module => {
+    //         module.renderTeam();
+    //     });
+    // }
+    //
+    // if (pageId === "howto") {
+    //     import("/src/pages/howtouse.js").then(module => {
+    //         module.renderHowToUse();
+    //     });
+    // }
 
     closeSidebar();
 }
