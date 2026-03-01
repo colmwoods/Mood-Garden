@@ -56,7 +56,7 @@ export function navigateTo(pageId) {
         el.classList.add('active')
     );
 
-    // Lazy-load для team і howto
+    // Lazy-load the team and how-to-use pages only when the user navigates to them
     if (lazyPages[pageId]) {
         lazyPages[pageId]();
         delete lazyPages[pageId]; // Download the module only once
