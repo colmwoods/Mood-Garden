@@ -74,7 +74,7 @@ export function renderGardenPage() {
                             ${getGardenHTML(7)}
                         </div>
                         <div class="rounded-2xl bg-white/5 border border-white/10 p-4 text-sm text-white/70">
-                            🌿${getGardenSummaryHTML()}
+                            ${getGardenSummaryHTML()}
                         </div>
   `;
 }
