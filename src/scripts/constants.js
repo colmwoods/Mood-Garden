@@ -15,3 +15,5 @@ export const KEYWORDS = {
     calm: [ 'calm', 'peaceful', 'relaxed', 'quiet' ],
     happy: [ 'happy', 'great', 'good', 'awesome', 'joy' ],
 };
+
+export const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
