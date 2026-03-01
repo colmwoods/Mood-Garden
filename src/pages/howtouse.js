@@ -1,6 +1,6 @@
 // /src/pages/howtouse.js
 
-export function renderHowToUse() {
+export function renderHowToUsePage() {
     const container = document.getElementById("page-howto");
     if (!container) return;
 

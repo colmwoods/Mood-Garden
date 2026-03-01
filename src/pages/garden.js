@@ -1,5 +1,9 @@
-export function renderGarden() {
-    document.getElementById('page-garden').innerHTML = `
+export function renderGardenPage() {
+
+    const container = document.getElementById('page-garden');
+    if (!container) return;
+
+    container.innerHTML = `
     <div>
                             <h2 class="text-xl font-semibold">Your Garden 🌿</h2>
                             <p class="text-sm text-white/60 mt-1">Every flower is a day you tracked your mood

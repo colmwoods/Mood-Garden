@@ -1,4 +1,4 @@
-export function renderHome() {
+export function renderHomePage() {
     const container = document.getElementById("page-home");
     if (!container) return;
 

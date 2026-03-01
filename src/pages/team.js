@@ -1,6 +1,6 @@
 // /src/pages/team.js
 
-export function renderTeam() {
+export function renderTeamPage() {
     const container = document.getElementById("page-team");
     if (!container) return;
 

@@ -2,21 +2,23 @@ import { moodStorage } from '/src/storage.js'
 import './styles/main.css';
 
 import { renderAnalytics } from './pages/analytics.js';
-import { renderGarden } from './pages/garden.js';
-import { renderTeam } from "./pages/team.js"
-import { renderHistory } from './pages/history.js';
-import { renderHowToUse } from './pages/howtouse.js';
-import { renderHome } from "./pages/home.js";
+import { renderGardenPage } from './pages/garden.js';
+import { renderTeamPage } from "./pages/team.js"
+import { renderHistoryPage } from './pages/history.js';
+import { renderHowToUsePage } from './pages/howtouse.js';
+import { renderHomePage } from "./pages/home.js";
+import { renderMoodPage } from "./pages/mood.js";
 
 
 moodStorage.init();
 
-renderHistory();
-renderTeam();
-renderHowToUse();
-renderGarden();
+renderHistoryPage();
+renderTeamPage();
+renderHowToUsePage();
+renderGardenPage();
 renderAnalytics();
-renderHome();
+renderHomePage();
+renderMoodPage();
 
 const sidebar = document.getElementById('sidebar');
 
