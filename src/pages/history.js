@@ -1,6 +1,6 @@
+import { FLOWERS } from "../scripts/constants.js";
 import { moodStorage } from '../storage.js';
 
-const FLOWERS = {happy: '🌻', calm: '🌸', sad: '🥀', angry: '🌹', anxious: '🌾'};
 
 export function renderHistoryPage() {
 
