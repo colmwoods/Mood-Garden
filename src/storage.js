@@ -132,8 +132,9 @@ export const moodStorage = {
         } else {
             this._state.history.push(newEntry);
             // Sort history by date (newest to oldest)
-            this._state.history.sort((a, b) => b.date.localeCompare(a.date));
         }
+
+        this._state.history.sort((a, b) => b.date.localeCompare(a.date));
 
         this._persist();
         return newEntry;
