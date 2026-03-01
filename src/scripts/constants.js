@@ -9,11 +9,11 @@ export const COLORS = {
 export const FLOWERS = {happy: '🌻', calm: '🌸', sad: '🥀', angry: '🌹', anxious: '🌾'};
 
 export const KEYWORDS = {
-    angry: [ 'angry', 'mad', 'furious', 'annoyed' ],
-    sad: [ 'sad', 'down', 'unhappy', 'depressed' ],
-    anxious: [ 'anxious', 'worried', 'stress', 'nervous' ],
-    calm: [ 'calm', 'peaceful', 'relaxed', 'quiet' ],
-    happy: [ 'happy', 'great', 'good', 'awesome', 'joy' ],
+    angry: [ 'angry', 'mad', 'furious', 'annoyed', 'irritated' ],
+    sad: [ 'sad', 'down', 'unhappy', 'depressed', 'lonely' ],
+    anxious: [ 'anxious', 'worried', 'stress', 'nervous', 'afraid' ],
+    calm: [ 'calm', 'peaceful', 'relaxed', 'quiet', 'chill' ],
+    happy: [ 'happy', 'great', 'good', 'awesome', 'joy', 'fun', 'excited' ],
 };
 
 export const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
