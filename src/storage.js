@@ -13,17 +13,10 @@ const createInitialState = () => {
     const now = new Date().toISOString();
     return {
         meta: {
-            version: CURRENT_VERSION,
-            createdAt: now,
-            updatedAt: now,
-        },
-        userSettings: {
-            theme: 'system',
-            language: 'uk',
-            userName: 'User',
-            notifications: true
-        },
-        history: [] // Array of objects { date: 'YYYY-MM-DD', mood: string, note: string, timestamp: string }
+            version: CURRENT_VERSION, createdAt: now, updatedAt: now,
+        }, userSettings: {
+            theme: 'system', language: 'uk', userName: 'User', notifications: true
+        }, history: [] // Array of objects { date: 'YYYY-MM-DD', mood: string, note: string, timestamp: string }
     };
 };
 
@@ -58,8 +51,7 @@ const io = {
         } catch (e) {
             console.error('Storage Error: Не вдалося зберегти дані (можливо, вичерпано ліміт)', e);
         }
-    },
-    load: () => {
+    }, load: () => {
         try {
             const raw = window.localStorage.getItem(STORAGE_KEY);
             return raw ? JSON.parse(raw) : null;
@@ -118,10 +110,7 @@ export const moodStorage = {
         const timestamp = new Date().toISOString();
 
         const newEntry = {
-            date: targetDate,
-            mood,
-            note,
-            updatedAt: timestamp
+            date: targetDate, mood, note, updatedAt: timestamp
         };
 
         // We update the history: if the date already exists - replace it, if not - add it
