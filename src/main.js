@@ -1,26 +1,37 @@
-import './style.css'
+import './styles/main.css';
 
-import { renderHome } from './pages/home.js'
-import { renderGarden } from './pages/garden.js'
-import { renderAnalytics } from './pages/analytics.js'
-import { renderHistory } from './pages/history.js'
+import { renderAnalytics } from './pages/analytics.js';
+import { renderGarden } from './pages/garden.js';
+
+import { renderTeam } from "./pages/team.js"
 
 const routes = {
-    '/': renderHome,
     '/garden': renderGarden,
     '/analytics': renderAnalytics,
-    '/history': renderHistory
+    '/team': renderTeam
 }
 
 function router() {
-    const path = location.hash.replace('#', '') || '/'
-    const page = routes[path] || renderHome
+  const path = location.hash.replace('#', '');
 
-    const app = document.getElementById('app')
-    app.innerHTML = ''
+  if (!path) return; // Stay on index.html main layout
 
-    page()
+  const page = routes[path];
+
+  if (!page) return;
+
+  const app = document.getElementById('app');
+  app.innerHTML = '';
+  page();
 }
 
-window.addEventListener('hashchange', router)
-window.addEventListener('load', router)
+window.addEventListener('hashchange', router);
+window.addEventListener('load', router);
+
+window.addEventListener('DOMContentLoaded', () => {
+  const teamBtn = document.getElementById('teamBtn');
+  const howToUseBtn = document.getElementById('howToUseBtn');
+
+  if (teamBtn) teamBtn.onclick = showTeamModal;
+  if (howToUseBtn) howToUseBtn.onclick = showHowToUseModal;
+});

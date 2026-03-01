@@ -1,17 +1,835 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
-    <link rel="stylesheet" href="src/styles/main.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mood Garden</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>🌱 Mood Garden</title>
+    <link rel="preconnect" href="https://fonts.bunny.net" />
+    <link href="https://fonts.bunny.net/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-link.active svg {
+            opacity: 1;
+        }
+
+        .flower {
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .flower:hover {
+            transform: scale(1.08) rotate(3deg);
+        }
+    </style>
 </head>
 
 <body>
-    <div id="app"></div>
-    <script type="module" src="src/main.js"></script>
+    <div
+        class="flex h-dvh items-center justify-center bg-gradient-to-br from-emerald-950 via-teal-900 to-green-950 px-1 text-white sm:px-10">
+        <div class="flex h-5/6 max-h-[800px] w-full max-w-6xl items-center sm:h-2/3">
+
+            <!-- Floating icon nav -->
+            <nav
+                class="z-10 -mr-4 flex w-16 flex-none flex-col justify-center overflow-hidden rounded-2xl border border-white/10 bg-black/50 p-2 shadow-xl shadow-black/30 backdrop-blur-3xl sm:mr-2">
+                <button id="mobile-open-btn"
+                    class="group mb-4 flex items-center justify-center rounded-xl px-3 py-2.5 transition hover:bg-white/5 active:scale-95 lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                        <path fill-rule="evenodd"
+                            d="M3 9a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 9Zm0 6.75a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <!-- Quick nav icons -->
+                <button data-page="home"
+                    class="quick-nav group flex items-center justify-center rounded-xl px-3 py-2.5 transition hover:bg-white/5 active:scale-95"
+                    title="Home">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6 opacity-50 group-hover:opacity-100 transition">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                    </svg>
+                </button>
+                <button data-page="log"
+                    class="quick-nav group flex items-center justify-center rounded-xl px-3 py-2.5 transition hover:bg-white/5 active:scale-95"
+                    title="Log Mood">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6 opacity-50 group-hover:opacity-100 transition">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                </button>
+                <button data-page="garden"
+                    class="quick-nav group flex items-center justify-center rounded-xl px-3 py-2.5 transition hover:bg-white/5 active:scale-95"
+                    title="Garden">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6 opacity-50 group-hover:opacity-100 transition">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" />
+                    </svg>
+                </button>
+                <button data-page="analytics"
+                    class="quick-nav group flex items-center justify-center rounded-xl px-3 py-2.5 transition hover:bg-white/5 active:scale-95"
+                    title="Analytics">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6 opacity-50 group-hover:opacity-100 transition">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+                    </svg>
+                </button>
+                <button data-page="history"
+                    class="quick-nav group flex items-center justify-center rounded-xl px-3 py-2.5 mt-4 transition hover:bg-white/5 active:scale-95"
+                    title="History">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6 opacity-50 group-hover:opacity-100 transition">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                </button>
+            </nav>
+
+            <!-- Main panel -->
+            <div
+                class="relative flex h-full grow overflow-hidden rounded-[2rem] border border-white/10 bg-black/15 shadow-xl shadow-black/30 backdrop-blur-3xl">
+
+                <!-- Sidebar -->
+                <div id="sidebar"
+                    class="hidden w-64 flex-none flex-col gap-4 overflow-y-auto p-5 lg:flex lg:bg-black/5 z-20">
+                    <!-- Logo -->
+                    <div class="flex items-center gap-2">
+                        <button id="sidebar-close-btn"
+                            class="flex items-center justify-center rounded-xl bg-white/10 p-2 transition hover:bg-white/20 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-5">
+                                <path fill-rule="evenodd"
+                                    d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <span class="text-lg font-semibold">🌱 Mood Garden</span>
+                    </div>
+
+                    <!-- Nav -->
+                    <nav class="flex flex-col gap-1">
+                        <p class="px-3 pt-2 pb-1 text-xs font-medium tracking-wider uppercase opacity-60">Menu</p>
+
+                        <button data-page="home"
+                            class="nav-link group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition hover:bg-white/5 active:scale-95 w-full text-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-5 opacity-60 group-hover:opacity-100 transition">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                            </svg>
+                            <span>Home</span>
+                        </button>
+
+                        <button data-page="log"
+                            class="nav-link group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition hover:bg-white/5 active:scale-95 w-full text-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-5 opacity-60 group-hover:opacity-100 transition">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                            <span>Log Mood</span>
+                        </button>
+
+                        <button data-page="garden"
+                            class="nav-link group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition hover:bg-white/5 active:scale-95 w-full text-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-5 opacity-60 group-hover:opacity-100 transition">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" />
+                            </svg>
+                            <span>Garden</span>
+                        </button>
+
+                        <button data-page="analytics"
+                            class="nav-link group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition hover:bg-white/5 active:scale-95 w-full text-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-5 opacity-60 group-hover:opacity-100 transition">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+                            </svg>
+                            <span>Analytics</span>
+                        </button>
+
+                        <button data-page="history"
+                            class="nav-link group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition hover:bg-white/5 active:scale-95 w-full text-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-5 opacity-60 group-hover:opacity-100 transition">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                            <span>History</span>
+                        </button>
+                        <!-- TEAM -->
+                        <!-- TEAM -->
+                        <button data-page="team"
+                            class="nav-link group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition hover:bg-white/5 active:scale-95 w-full text-left">
+                            <i class="fas fa-users opacity-60 group-hover:opacity-100 transition"></i>
+                            <span>Team</span>
+                        </button>
+
+                        <!-- HOW TO USE -->
+                        <button data-page="howto"
+                            class="nav-link group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition hover:bg-white/5 active:scale-95 w-full text-left">
+                            <i class="fas fa-question-circle opacity-60 group-hover:opacity-100 transition"></i>
+                            <span>How To Use</span>
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Content area -->
+                <div class="flex grow flex-col overflow-hidden">
+
+                    <!-- Top bar -->
+                    <div class="flex items-center gap-3 p-4 border-b border-white/10">
+                        <button id="mobile-open-btn2"
+                            class="flex items-center justify-center rounded-xl bg-white/10 p-2 transition hover:bg-white/20 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-5">
+                                <path fill-rule="evenodd"
+                                    d="M3 9a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 9Zm0 6.75a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <input type="text" placeholder="Search moods, notes..."
+                            class="w-full rounded-xl border-0 bg-black/10 px-4 py-2 text-sm outline-none text-white placeholder:text-white/50 focus:bg-black/25 focus:ring-2 focus:ring-white/20 transition" />
+                    </div>
+
+                    <!-- Pages -->
+                    <div class="grow overflow-y-auto p-5">
+
+                        <!-- HOME -->
+                        <div id="page-home" class="page active flex-col gap-5">
+                            <div>
+                                <h2 class="text-xl font-semibold">Good morning 🌿</h2>
+                                <p class="text-sm text-white/60 mt-1">How are you feeling today?</p>
+                            </div>
+                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                                <button data-page="log"
+                                    class="flower nav-link flex flex-col items-center gap-3 rounded-2xl bg-white/10 px-3 py-6 text-center text-sm hover:bg-white/20">
+                                    <span class="text-5xl">🌸</span>
+                                    <span class="font-medium">Log Today's Mood</span>
+                                    <span class="text-xs text-white/50">Track how you feel</span>
+                                </button>
+                                <button data-page="garden"
+                                    class="flower nav-link flex flex-col items-center gap-3 rounded-2xl bg-white/10 px-3 py-6 text-center text-sm hover:bg-white/20">
+                                    <span class="text-5xl">🌻</span>
+                                    <span class="font-medium">Visit Your Garden</span>
+                                    <span class="text-xs text-white/50">See your mood flowers</span>
+                                </button>
+                                <button data-page="analytics"
+                                    class="flower nav-link flex flex-col items-center gap-3 rounded-2xl bg-white/10 px-3 py-6 text-center text-sm hover:bg-white/20">
+                                    <span class="text-5xl">🌺</span>
+                                    <span class="font-medium">View Analytics</span>
+                                    <span class="text-xs text-white/50">Understand your patterns</span>
+                                </button>
+                            </div>
+                            <div class="rounded-2xl bg-white/5 p-4 border border-white/10">
+                                <p class="text-sm font-medium mb-2">🌱 This week's streak</p>
+                                <div class="flex gap-2">
+                                    <span class="text-2xl" title="Mon">🌸</span>
+                                    <span class="text-2xl" title="Tue">🌼</span>
+                                    <span class="text-2xl" title="Wed">🌻</span>
+                                    <span class="text-2xl" title="Thu">🌷</span>
+                                    <span class="text-2xl opacity-30" title="Fri">🌱</span>
+                                    <span class="text-2xl opacity-30" title="Sat">🌱</span>
+                                    <span class="text-2xl opacity-30" title="Sun">🌱</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LOG MOOD (Azamat)-->
+
+                        <div id="page-log" class="page flex-col gap-5">
+
+                            <div>
+                                <h2 class="text-xl font-semibold">Log Mood 🌸</h2>
+                                <p class="text-sm text-white/60 mt-1">
+                                    Choose a flower that matches your mood
+                                </p>
+                            </div>
+
+
+                            <div class="grid grid-cols-2 gap-3 sm:grid-cols-5">
+
+                                <button data-mood="happy"
+                                    class="flower moodBtn flex flex-col items-center gap-2 rounded-2xl bg-white/10 p-4 hover:bg-white/20 hover:ring-2 hover:ring-white/30">
+                                    <span class="text-4xl">😄</span>
+                                    <span class="text-4xl">🌻</span>
+                                    <span class="text-xs font-medium">Happy</span>
+                                </button>
+
+
+                                <button data-mood="calm"
+                                    class="flower moodBtn flex flex-col items-center gap-2 rounded-2xl bg-white/10 p-4 hover:bg-white/20 hover:ring-2 hover:ring-white/30">
+                                    <span class="text-4xl">😌</span>
+                                    <span class="text-4xl">🌸</span>
+                                    <span class="text-xs font-medium">Calm</span>
+                                </button>
+
+
+                                <button data-mood="sad"
+                                    class="flower moodBtn flex flex-col items-center gap-2 rounded-2xl bg-white/10 p-4 hover:bg-white/20 hover:ring-2 hover:ring-white/30">
+                                    <span class="text-4xl">😔</span>
+                                    <span class="text-4xl">🥀</span>
+                                    <span class="text-xs font-medium">Sad</span>
+                                </button>
+
+
+                                <button data-mood="angry"
+                                    class="flower moodBtn flex flex-col items-center gap-2 rounded-2xl bg-white/10 p-4 hover:bg-white/20 hover:ring-2 hover:ring-white/30">
+                                    <span class="text-4xl">😤</span>
+                                    <span class="text-4xl">🌹</span>
+                                    <span class="text-xs font-medium">Angry</span>
+                                </button>
+
+
+                                <button data-mood="anxious"
+                                    class="flower moodBtn flex flex-col items-center gap-2 rounded-2xl bg-white/10 p-4 hover:bg-white/20 hover:ring-2 hover:ring-white/30">
+                                    <span class="text-4xl">😰</span>
+                                    <span class="text-4xl">🌾</span>
+                                    <span class="text-xs font-medium">Anxious</span>
+                                </button>
+
+                            </div>
+
+
+
+                            <!-- TEXTAREA (Azamat)  -->
+                            <textarea id="moodInput" rows="3" placeholder="What's on your mind today?" class="rounded-xl bg-black/20 border border-white/10 px-4 py-3 
+text-sm text-white placeholder:text-white/40 outline-none focus:ring-2 
+focus:ring-white/20 resize-none"></textarea>
+
+                             <button id="submitMoodBtn"
+                            class="rounded-xl bg-emerald-500 hover:bg-emerald-600 px-6 py-3
+                            font-medium transition mt-2">
+                            Submit Mood 🌱
+                            </button>
+
+
+                            <!-- ✅ ERROR MESSAGE -->
+
+                            <p id="logError" class="text-red-300 text-sm"></p>
+
+
+                            <!-- ✅ CONFIRMATION CARD -->
+
+                            <div id="confirmationCard"
+                                class="hidden rounded-2xl bg-white/10 border border-white/20 p-5 mt-4">
+
+                                <h3 class="text-lg font-semibold mb-2">
+                                Mood Saved 🌱
+                                </h3>
+
+                                <p id="confirmMood"></p>
+                                <p id="confirmDate"></p>
+
+                                <button id="backHomeBtn"
+                                class="mt-4 rounded-xl bg-white/20 px-4 py-2 hover:bg-white/30">
+                                Return Home
+                                </button>
+
+                            </div>
+
+
+
+                        </div>
+
+                        <!-- GARDEN -->
+                        <div id="page-garden" class="page flex-col gap-5">
+                            <div>
+                                <h2 class="text-xl font-semibold">Your Garden 🌿</h2>
+                                <p class="text-sm text-white/60 mt-1">Every flower is a day you tracked your mood
+                                </p>
+                            </div>
+                            <div class="grid grid-cols-4 gap-3 sm:grid-cols-7">
+                                <div
+                                    class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/10 p-3 text-center hover:bg-white/20">
+                                    <span class="text-3xl">🌻</span><span class="text-xs text-white/50">Mon</span>
+                                </div>
+                                <div
+                                    class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/10 p-3 text-center hover:bg-white/20">
+                                    <span class="text-3xl">🌸</span><span class="text-xs text-white/50">Tue</span>
+                                </div>
+                                <div
+                                    class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/10 p-3 text-center hover:bg-white/20">
+                                    <span class="text-3xl">🌼</span><span class="text-xs text-white/50">Wed</span>
+                                </div>
+                                <div
+                                    class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/10 p-3 text-center hover:bg-white/20">
+                                    <span class="text-3xl">🌷</span><span class="text-xs text-white/50">Thu</span>
+                                </div>
+                                <div
+                                    class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/10 p-3 text-center hover:bg-white/20">
+                                    <span class="text-3xl">🥀</span><span class="text-xs text-white/50">Fri</span>
+                                </div>
+                                <div
+                                    class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/10 p-3 text-center hover:bg-white/20">
+                                    <span class="text-3xl">🌺</span><span class="text-xs text-white/50">Sat</span>
+                                </div>
+                                <div
+                                    class="flower flex flex-col items-center gap-1 rounded-2xl bg-white/5 p-3 text-center opacity-40">
+                                    <span class="text-3xl">🌱</span><span class="text-xs text-white/50">Sun</span>
+                                </div>
+                            </div>
+                            <div class="rounded-2xl bg-white/5 border border-white/10 p-4 text-sm text-white/70">
+                                🌿 <span class="text-white font-medium">6 days</span> logged this week · Most common
+                                mood: <span class="text-yellow-300">🌻 Happy</span>
+                            </div>
+                        </div>
+
+                        <!-- ANALYTICS -->
+                        <div id="page-analytics" class="page flex-col gap-5">
+                            <div>
+                                <h2 class="text-xl font-semibold">Analytics 📊</h2>
+                                <p class="text-sm text-white/60 mt-1">Your mood patterns over time</p>
+                            </div>
+                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                                <div class="rounded-2xl bg-white/10 p-4 text-center">
+                                    <div class="text-3xl mb-1">🌻</div>
+                                    <div class="text-2xl font-bold">68%</div>
+                                    <div class="text-xs text-white/60 mt-1">Happy days</div>
+                                </div>
+                                <div class="rounded-2xl bg-white/10 p-4 text-center">
+                                    <div class="text-3xl mb-1">🔥</div>
+                                    <div class="text-2xl font-bold">12</div>
+                                    <div class="text-xs text-white/60 mt-1">Day streak</div>
+                                </div>
+                                <div class="rounded-2xl bg-white/10 p-4 text-center">
+                                    <div class="text-3xl mb-1">📅</div>
+                                    <div class="text-2xl font-bold">47</div>
+                                    <div class="text-xs text-white/60 mt-1">Total entries</div>
+                                </div>
+                            </div>
+                            <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                                <p class="text-sm font-medium mb-3">Mood distribution</p>
+                                <div class="flex flex-col gap-2 text-sm">
+                                    <div class="flex items-center gap-3"><span class="w-6">🌻</span>
+                                        <div class="flex-1 bg-white/10 rounded-full h-2">
+                                            <div class="bg-yellow-400 h-2 rounded-full" style="width:68%"></div>
+                                        </div><span class="text-white/60 w-8 text-right">68%</span>
+                                    </div>
+                                    <div class="flex items-center gap-3"><span class="w-6">🌸</span>
+                                        <div class="flex-1 bg-white/10 rounded-full h-2">
+                                            <div class="bg-pink-400 h-2 rounded-full" style="width:15%"></div>
+                                        </div><span class="text-white/60 w-8 text-right">15%</span>
+                                    </div>
+                                    <div class="flex items-center gap-3"><span class="w-6">🥀</span>
+                                        <div class="flex-1 bg-white/10 rounded-full h-2">
+                                            <div class="bg-purple-400 h-2 rounded-full" style="width:10%"></div>
+                                        </div><span class="text-white/60 w-8 text-right">10%</span>
+                                    </div>
+                                    <div class="flex items-center gap-3"><span class="w-6">🌾</span>
+                                        <div class="flex-1 bg-white/10 rounded-full h-2">
+                                            <div class="bg-amber-400 h-2 rounded-full" style="width:7%"></div>
+                                        </div><span class="text-white/60 w-8 text-right">7%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- HISTORY -->
+                        <div id="page-history" class="page flex-col gap-5">
+                            <div>
+                                <h2 class="text-xl font-semibold">History 🕰️</h2>
+                                <p class="text-sm text-white/60 mt-1">All your past mood entries</p>
+                            </div>
+                            <div id="historyContainer" class="flex flex-col gap-3">
+                                <div
+                                    class="flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3 hover:bg-white/15 transition">
+                                    <span class="text-3xl">🌻</span>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium">Happy</p>
+                                        <p class="text-xs text-white/50">Today, 09:14 · "Had a great morning walk"
+                                        </p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3 hover:bg-white/15 transition">
+                                    <span class="text-3xl">🌸</span>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium">Calm</p>
+                                        <p class="text-xs text-white/50">Yesterday, 21:30 · "Quiet evening at home"
+                                        </p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3 hover:bg-white/15 transition">
+                                    <span class="text-3xl">🌼</span>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium">Happy</p>
+                                        <p class="text-xs text-white/50">Feb 26, 18:00 · "Finished a big project"
+                                        </p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3 hover:bg-white/15 transition">
+                                    <span class="text-3xl">🥀</span>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium">Sad</p>
+                                        <p class="text-xs text-white/50">Feb 25, 20:15 · "Feeling a bit low"</p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3 hover:bg-white/15 transition">
+                                    <span class="text-3xl">🌺</span>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-medium">Excited</p>
+                                        <p class="text-xs text-white/50">Feb 24, 11:00 · "New idea for the app!"</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- TEAM -->
+                        <div id="page-team" class="page flex-col gap-5"></div>
+
+                        <!-- HOW TO USE -->
+                        <div id="page-howto" class="page flex-col gap-5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+
+        function openSidebar() {
+            sidebar.classList.remove('hidden');
+            sidebar.classList.add('flex', 'absolute', 'inset-y-0', 'left-0', 'bg-black/90');
+        }
+
+        function closeSidebar() {
+            const isLg = window.innerWidth >= 1024;
+            if (!isLg) {
+                sidebar.classList.add('hidden');
+                sidebar.classList.remove('flex', 'absolute', 'inset-y-0', 'left-0', 'bg-black/90');
+            }
+        }
+
+        document.getElementById('mobile-open-btn').addEventListener('click', openSidebar);
+        document.getElementById('mobile-open-btn2').addEventListener('click', openSidebar);
+        document.getElementById('sidebar-close-btn').addEventListener('click', closeSidebar);
+
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+
+            const page = document.getElementById('page-' + pageId);
+
+            if (page) {
+                page.classList.add('active');
+            }
+
+            document.querySelectorAll('[data-page="' + pageId + '"]').forEach(el =>
+                el.classList.add('active')
+            );
+
+            if (pageId === "team") {
+                import("/src/pages/team.js").then(module => {
+                    module.renderTeam();
+                });
+            }
+
+            if (pageId === "howto") {
+                import("/src/pages/howtouse.js").then(module => {
+                    module.renderHowToUse();
+                });
+            }
+
+            closeSidebar();
+        }
+
+        document.querySelectorAll('[data-page]').forEach(el => {
+            el.addEventListener('click', () => navigateTo(el.dataset.page));
+        });
+
+        navigateTo('home');
+
+    </script>
+
+
+    <!-- MOOD SCRIPT (Azamat) -->
+    <script>
+        const moodInput = document.getElementById("moodInput");
+        const moodButtons = document.querySelectorAll(".moodBtn");
+
+        /* Mood keyword dictionary */
+        const moodKeywords = {
+            happy: ["happy", "great", "good", "awesome", "excited", "joy", "fun"],
+            calm: ["calm", "peaceful", "relaxed", "quiet", "chill"],
+            sad: ["sad", "down", "unhappy", "depressed", "lonely"],
+            angry: ["angry", "mad", "furious", "annoyed", "irritated"],
+            anxious: ["anxious", "worried", "stress", "nervous", "afraid"]
+        };
+
+
+        /* Remove highlight from all buttons */
+        function clearMoodHighlight() {
+            moodButtons.forEach(btn => {
+                btn.classList.remove("ring-4", "ring-emerald-400", "bg-white/20");
+            });
+        }
+
+
+        /* Highlight selected mood button */
+        function highlightMood(mood) {
+
+            clearMoodHighlight();
+
+            const button = document.querySelector(
+                `.moodBtn[data-mood="${mood}"]`
+            );
+
+            if (button) {
+                button.classList.add(
+                    "ring-4",
+                    "ring-emerald-400",
+                    "bg-white/20"
+                );
+            }
+        }
+
+
+        /* Detect mood from text */
+      function detectMoodFromText() {
+
+    const text =
+    moodInput.value.toLowerCase();
+
+    if (text.includes("angry")) {
+        highlightMood("angry");
+        return;
+    }
+
+    if (text.includes("sad")) {
+        highlightMood("sad");
+        return;
+    }
+
+    if (text.includes("anxious")) {
+        highlightMood("anxious");
+        return;
+    }
+
+    if (text.includes("calm")) {
+        highlightMood("calm");
+        return;
+    }
+
+    if (text.includes("happy") || text.includes("good")) {
+        highlightMood("happy");
+        return;
+    }
+
+    clearMoodHighlight();
+
+}
+    
+
+
+        /* Live detection while typing */
+        moodInput.addEventListener("input", detectMoodFromText);
+    </script>
+    <script src="storage.js"></script>
+    <script type="module" src="/src/main.js"></script>
+
+
+    <script>
+
+const moodFlowers = {
+
+    happy: "🌻",
+    calm: "🌸",
+    sad: "🥀",
+    angry: "🌹",
+    anxious: "🌾"
+
+};
+
+
+/* ---------- ADD TO HISTORY ---------- */
+
+function addToHistory(mood, note, date) {
+
+    const container =
+    document.getElementById("historyContainer");
+
+    if(!container) return;
+
+
+    const flower =
+    moodFlowers[mood] || "🌱";
+
+
+    const entry =
+    document.createElement("div");
+
+    entry.className =
+    "flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3 hover:bg-white/15 transition";
+
+
+    entry.innerHTML = `
+
+    <span class="text-3xl">${flower}</span>
+
+    <div class="flex-1">
+
+    <p class="text-sm font-medium">
+    ${mood.charAt(0).toUpperCase() + mood.slice(1)}
+    </p>
+
+    <p class="text-xs text-white/50">
+    ${date} · "${note}"
+    </p>
+
+    </div>
+
+    `;
+
+
+    container.prepend(entry);
+
+}
+
+
+/* ---------- LOAD HISTORY ---------- */
+
+function loadHistoryFromStorage() {
+
+    const container =
+    document.getElementById("historyContainer");
+
+    if (!container) return;
+
+    let logs =
+    JSON.parse(localStorage.getItem("moodLogs")) || [];
+
+
+    logs.forEach(entry => {
+
+        addToHistory(
+            entry.mood,
+            entry.note,
+            entry.date
+        );
+
+    });
+
+}
+
+function getMoodFromText(note) {
+
+    const text = note.toLowerCase();
+
+    if (text.includes("angry")) return "angry";
+    if (text.includes("sad")) return "sad";
+    if (text.includes("anxious")) return "anxious";
+    if (text.includes("calm")) return "calm";
+    if (text.includes("happy") || text.includes("good")) return "happy";
+
+    return null;
+
+}
+/* ---------- SUBMIT BUTTON ---------- */
+
+    document.getElementById("submitMoodBtn")
+.addEventListener("click", function() {
+
+    const note = moodInput.value;
+
+    /* Detect mood directly */
+    let mood = getMoodFromText(note);
+
+    if (!mood) {
+
+        document.getElementById("logError").innerText =
+        "Type a mood like sad, angry, calm or happy.";
+
+        return;
+
+    }
+
+    const success =
+    saveMood(mood, note);
+
+    if (!success) {
+
+        document.getElementById("logError").innerText =
+        "You already logged mood today.";
+
+        return;
+    }
+
+    const today =
+    new Date().toDateString();
+
+
+    /* Confirmation */
+
+    document.getElementById("confirmationCard")
+    .classList.remove("hidden");
+
+    document.getElementById("confirmMood")
+    .innerText = "Mood: " + mood;
+
+    document.getElementById("confirmDate")
+    .innerText = "Date: " + today;
+
+
+    /* History */
+
+    addToHistory(mood, note, today);
+
+});
+
+/* ---------- RETURN HOME ---------- */
+
+document.getElementById("backHomeBtn")
+.addEventListener("click", function(){
+
+navigateTo("home");
+
+});
+
+
+/* ---------- LOAD HISTORY WHEN OPEN ---------- */
+
+const oldNavigate = navigateTo;
+
+navigateTo = function(pageId){
+
+    oldNavigate(pageId);
+
+    if(pageId === "history"){
+
+        loadHistoryFromStorage();
+
+    }
+
+}
+
+</script>
 </body>
 
 </html>
