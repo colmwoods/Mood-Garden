@@ -16,8 +16,6 @@ const lazyPages = {
 };
 
 renderHistoryPage();
-// renderTeamPage();
-// renderHowToUsePage();
 renderGardenPage();
 renderAnalytics();
 renderHomePage();
@@ -52,9 +50,7 @@ export function navigateTo(pageId) {
         page.classList.add('active');
     }
 
-    document.querySelectorAll('[data-page="' + pageId + '"]').forEach(el =>
-        el.classList.add('active')
-    );
+    document.querySelectorAll('[data-page="' + pageId + '"]').forEach(el => el.classList.add('active'));
 
     // Lazy-load the team and how-to-use pages only when the user navigates to them
     if (lazyPages[pageId]) {
@@ -62,17 +58,6 @@ export function navigateTo(pageId) {
         delete lazyPages[pageId]; // Download the module only once
     }
 
-    // if (pageId === "team") {
-    //     import("/src/pages/team.js").then(module => {
-    //         module.renderTeam();
-    //     });
-    // }
-    //
-    // if (pageId === "howto") {
-    //     import("/src/pages/howtouse.js").then(module => {
-    //         module.renderHowToUse();
-    //     });
-    // }
 
     closeSidebar();
 }
@@ -82,36 +67,3 @@ document.querySelectorAll('[data-page]').forEach(el => {
 });
 
 navigateTo('home');
-
-// const routes = {
-//     '/garden': renderGarden,
-//     '/analytics': renderAnalytics,
-//     '/team': renderTeam,
-//     '/history': renderHistory
-// }
-//
-//
-// function router() {
-//   const path = location.hash.replace('#', '');
-//
-//   if (!path) return; // Stay on index.html main layout
-//
-//   const page = routes[path];
-//
-//   if (!page) return;
-//
-//   const app = document.getElementById('app');
-//   app.innerHTML = '';
-//   page();
-// }
-//
-// window.addEventListener('hashchange', router);
-// window.addEventListener('load', router);
-//
-// window.addEventListener('DOMContentLoaded', () => {
-//   const teamBtn = document.getElementById('teamBtn');
-//   const howToUseBtn = document.getElementById('howToUseBtn');
-//
-//   if (teamBtn) teamBtn.onclick = showTeamModal;
-//   if (howToUseBtn) howToUseBtn.onclick = showHowToUseModal;
-// });
