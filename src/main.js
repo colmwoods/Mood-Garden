@@ -6,9 +6,9 @@ import { renderGarden } from './pages/garden.js';
 import { renderTeam } from "./pages/team.js"
 import { renderHistory } from './pages/history.js';
 
-import {MoodStorage} from '/src/storage.js'
+import {moodStorage} from '/src/storage.js'
 
-MoodStorage.init();
+moodStorage.init();
 
 renderHistory()
 
