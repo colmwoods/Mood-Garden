@@ -1,9 +1,9 @@
-import { MoodStorage } from '../storage.js';
+import { moodStorage } from '../storage.js';
 
 const FLOWERS = { happy:'🌻', calm:'🌸', sad:'🥀', angry:'🌹', anxious:'🌾' };
 
 export function renderHistory() {
-    const logs = MoodStorage.getHistory();
+    const logs = moodStorage.getHistory();
     console.log(logs);
     const items = logs.map(e => `
         <div class="flex items-center gap-4 rounded-2xl bg-white/10 px-4 py-3 hover:bg-white/15 transition">
