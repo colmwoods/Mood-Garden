@@ -93,21 +93,52 @@ Zoom: 100%
 
 ```
 📦 mood-garden
+ ┣ 📂 .github
+ ┃ ┗ 📂 ISSUE_TEMPLATE
+ ┃    ┗ 📄 title-component.md
  ┣ 📂 public
+ ┃ ┣ 📂 images
+ ┃ ┗ 📄 icon.svg
+ ┣ 📂 screenshots
+ ┃ ┣ 📄 analytics.png
+ ┃ ┣ 📄 garden.png
+ ┃ ┣ 📄 history.png
+ ┃ ┣ 📄 home.png
+ ┃ ┣ 📄 how-to-use.png
+ ┃ ┣ 📄 log-mood.png
+ ┃ ┣ 📄 team.png
+ ┃ ┣ 📄 mobile-analytics.png
+ ┃ ┣ 📄 mobile-garden.png
+ ┃ ┣ 📄 mobile-history.png
+ ┃ ┣ 📄 mobile-home.png
+ ┃ ┣ 📄 mobile-how-to-use.png
+ ┃ ┣ 📄 mobile-log-mood.png
+ ┃ ┗ 📄 mobile-team.png
  ┣ 📂 src
  ┃ ┣ 📂 pages
- ┃ ┃ ┣ analytics.js
- ┃ ┃ ┣ garden.js
- ┃ ┃ ┣ howtouse.js
- ┃ ┃ ┣ team.js
- ┃ ┃ ┗ storage.js
+ ┃ ┃ ┣ 📄 analytics.js
+ ┃ ┃ ┣ 📄 garden.js
+ ┃ ┃ ┣ 📄 history.js
+ ┃ ┃ ┣ 📄 home.js
+ ┃ ┃ ┣ 📄 howtouse.js
+ ┃ ┃ ┣ 📄 mood.js
+ ┃ ┃ ┗ 📄 team.js
+ ┃ ┣ 📂 scripts
+ ┃ ┃ ┣ 📄 addToStorage.js
+ ┃ ┃ ┗ 📄 constants.js
  ┃ ┣ 📂 styles
- ┃ ┃ ┗ main.css
- ┃ ┣ main.js
- ┃ ┗ storage.js
- ┣ index.html
- ┣ package.json
- ┗ vite.config.js
+ ┃ ┃ ┗ 📄 main.css
+ ┃ ┣ 📄 counter.js
+ ┃ ┣ 📄 main.js
+ ┃ ┣ 📄 storage.js
+ ┃ ┗ 📄 style.css
+ ┣ 📄 .gitignore
+ ┣ 📄 eslint.config.js
+ ┣ 📄 index.html
+ ┣ 📄 package-lock.json
+ ┣ 📄 package.json
+ ┣ 📄 README.md
+ ┗ 📄 vite.config.js
 ```
 
 ---
@@ -117,7 +148,7 @@ Zoom: 100%
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/mood-garden.git
+git clone https://github.com/colmwoods/mood-garden.git
 cd mood-garden
 ```
 
